@@ -10,6 +10,9 @@ public class HelloApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context
 				= SpringApplication.run(HelloApplication.class, args);
+		for (String beanDefinitionName : context.getBeanDefinitionNames()) {
+			System.out.println(beanDefinitionName);
+		}
 		System.out.println("# of beans=" + context.getBeanDefinitionCount());
 	}
 
