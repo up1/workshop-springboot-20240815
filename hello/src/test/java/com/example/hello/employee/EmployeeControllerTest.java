@@ -1,5 +1,6 @@
 package com.example.hello.employee;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +16,8 @@ class EmployeeControllerTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    void getById() {
+    @DisplayName("ดึงข้อมูลของพนักงานรหัส 1 สำเร็จ")
+    void case01() {
         EmployeeResponse result
                 = restTemplate.getForObject("/employee/1", EmployeeResponse.class);
         assertEquals(1, result.getId());
