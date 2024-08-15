@@ -15,9 +15,16 @@ class EmployeeControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    @Autowired
+    private EmployeeRepository repository;
+
     @Test
     @DisplayName("ดึงข้อมูลของพนักงานรหัส 1 สำเร็จ")
     void case01() {
+        // Arrange
+        Employee e1 = new Employee("Somkiat", "l1", "xxx@gmail.com", 30);
+        repository.save(e1);
+        // Act
         EmployeeResponse result
                 = restTemplate.getForObject("/employee/1", EmployeeResponse.class);
         assertEquals(1, result.getId());
