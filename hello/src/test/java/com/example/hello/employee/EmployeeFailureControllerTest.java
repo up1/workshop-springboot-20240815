@@ -25,4 +25,14 @@ class EmployeeFailureControllerTest {
         assertEquals("Employee not found", result.getDetail());
         assertEquals("/employee/5", result.getInstance().toString());
     }
+
+    @Test
+    @DisplayName("ข้อมูล id ไม่ใช่ตัวเลข")
+    void case03() {
+        ProblemDetail result
+                = restTemplate.getForObject("/employee/xyz", ProblemDetail.class);
+        assertEquals(400, result.getStatus());
+        assertEquals("Failed to convert 'id' with value: 'xyz'", result.getDetail());
+        assertEquals("/employee/xyz", result.getInstance().toString());
+    }
 }
