@@ -28,4 +28,13 @@ class EmployeeRepositoryTest {
         assertEquals("f1", result.get().getFirstName());
     }
 
+    @Test
+    @DisplayName("ไม่พบข้อมูล id=2")
+    public void case05() {
+        // Act
+        Optional<Employee> result =  repository.findById(2);
+        // Assert
+        assertFalse(result.isPresent());
+    }
+
 }
