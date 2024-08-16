@@ -1,11 +1,14 @@
 package com.example.hello.employee;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,6 +20,12 @@ class EmployeeControllerTest {
 
     @Autowired
     private EmployeeRepository repository;
+
+    @AfterEach
+    public void cleanup(){
+        repository.deleteAll();
+        repository.flush();
+    }
 
     @Test
     @DisplayName("ดึงข้อมูลของพนักงานรหัส 1 สำเร็จ")
@@ -30,5 +39,18 @@ class EmployeeControllerTest {
         assertEquals(1, result.getId());
         assertEquals("Somkiat", result.getName());
         assertEquals("xxx@gmail.com", result.getEmail());
+    }
+
+    @Test
+    @DisplayName("Success to create a new employee")
+    void case02() {
+        // Arrange
+        EmployeeCreateRequest request = new EmployeeCreateRequest();
+        request.setFirst_name("Somkiat");
+        request.setLast_name("Puisungnoen");
+        // Act
+        ResponseEntity<EmployeeResponse> result
+                = restTemplate.postForEntity("/employee", request, EmployeeResponse.class);
+        assertEquals("Somkiat Puisungnoen", result.getBody().getName());
     }
 }
