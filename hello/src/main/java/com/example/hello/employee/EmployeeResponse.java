@@ -25,4 +25,16 @@ public class EmployeeResponse{
 	public String getEmail(){
 		return email;
 	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }

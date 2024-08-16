@@ -1,21 +1,27 @@
 package com.example.hello.employee;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Employee {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column(unique = true)
     private String firstName;
     private String lastName;
     private String email;
     private int age;
 
     public Employee() {
+    }
+
+    public Employee(Integer id, String firstName, String lastName, String email, int age) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.age = age;
     }
 
     public Employee(String firstName, String lastName, String email, int age) {
