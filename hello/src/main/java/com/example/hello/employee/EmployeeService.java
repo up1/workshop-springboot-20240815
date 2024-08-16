@@ -19,9 +19,9 @@ public class EmployeeService {
 
     @Transactional(dontRollbackOn = EmployeeNotFoundException.class)
     public EmployeeResponse getById(int id) {
-        myService2.doProcess();
-        employeeRepository.save(new Employee());
-        employeeRepository.save(new Employee());
+//        myService2.doProcess();
+//        employeeRepository.save(new Employee());
+//        employeeRepository.save(new Employee());
         // Call external api
         Optional<Employee> result =  employeeRepository.findById(id);
         if (result.isEmpty()) {

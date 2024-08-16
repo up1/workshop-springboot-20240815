@@ -13,7 +13,7 @@ public class MyService2 {
 
     @Transactional(value = Transactional.TxType.REQUIRES_NEW)
     public void doProcess(){
-        employeeRepository.deleteAll();
+//        employeeRepository.deleteAll();
     }
 
 }
