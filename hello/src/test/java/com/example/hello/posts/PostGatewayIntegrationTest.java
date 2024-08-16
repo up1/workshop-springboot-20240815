@@ -22,6 +22,7 @@ class PostGatewayIntegrationTest {
         // Act
         Optional<PostResponse> result =  postGateway.getById(1);
         // Assert
+        assertTrue(result.isPresent());
         assertEquals(1, result.get().getId());
         assertEquals("sunt aut facere repellat provident occaecati excepturi optio reprehenderit", result.get().getTitle());
     }
