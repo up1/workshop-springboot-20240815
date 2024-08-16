@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Employee {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(unique = true)
+//    @Column(unique = true)
     private String firstName;
     private String lastName;
     private String email;
