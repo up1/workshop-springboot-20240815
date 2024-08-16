@@ -37,4 +37,15 @@ class EmployeeRepositoryTest {
         assertFalse(result.isPresent());
     }
 
+    @Test
+    @DisplayName("การบันทึกซ้ำ")
+    public void case07(){
+        Employee e1 = new Employee("f1", "l1", "e1", 30);
+        assertNull(e1.getId());
+        repository.saveAndFlush(e1);
+        assertNotNull(e1.getId());
+        repository.saveAndFlush(e1);
+        assertNotNull(e1.getId());
+    }
+
 }

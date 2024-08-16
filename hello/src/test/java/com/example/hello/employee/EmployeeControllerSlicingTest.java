@@ -45,4 +45,24 @@ class EmployeeControllerSlicingTest {
         assertEquals("/employee/5", problemDetail.getInstance().toString());
     }
 
+    @Test
+    @DisplayName("Success to create a new employee")
+    public void case02() throws Exception {
+        // Arrange
+        ObjectMapper mapper = new ObjectMapper();
+        EmployeeCreateRequest request = new EmployeeCreateRequest();
+        request.setFirst_name("Somkiat");
+        request.setLast_name("Puisungnoen");
+        // Act and Assert
+        MvcResult mvcResult =this.mvc.perform(post("/employee")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().is(201)).andReturn();
+
+        // Convert response to JSON object
+        String response = mvcResult.getResponse().getContentAsString();
+        EmployeeResponse employeeResponse = mapper.readValue(response, EmployeeResponse.class);
+
+        assertEquals("XXX", employeeResponse.getName());
+    }
+
 }

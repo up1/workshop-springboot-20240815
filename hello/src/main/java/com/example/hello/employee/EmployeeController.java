@@ -17,7 +17,6 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @LogExecutionTime
     @GetMapping("/employee/{id}")
     // employee/1
     public EmployeeResponse getById(@PathVariable int id) {
@@ -27,14 +26,18 @@ public class EmployeeController {
     }
 
     // employee?id=1
+    @LogExecutionTime
     @GetMapping("/employee")
     public EmployeeResponse getById2(@RequestParam(defaultValue = "100") int id){
         return new EmployeeResponse(id, "", "");
     }
 
+    @LogExecutionTime
     @PostMapping("/employee")
     public ResponseEntity<EmployeeResponse> createNewEmployee(
             @RequestBody EmployeeCreateRequest request){
+        // Validate request
+        // Call service to create new employee
         EmployeeResponse body = new EmployeeResponse();
         body.setName("%s %s".formatted(request.getFirst_name(), request.getLast_name()));
         ResponseEntity<EmployeeResponse> response
